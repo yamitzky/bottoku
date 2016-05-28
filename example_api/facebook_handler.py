@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from bottoku import InputMessage, Environment
+from bottoku import IncomingMessage, Environment
 from bottoku.repository.dict_repository import DictRepository
 
 from bot import MyBot
@@ -20,7 +20,7 @@ def facebook_handler(event, context):
 
             if message.get('message', {}).get('text'):
                 # text message in facebook
-                msg = InputMessage(
+                msg = IncomingMessage(
                     type=types.TEXT,
                     payload=TextPayload(message['message']['text']),
                 )
@@ -28,7 +28,7 @@ def facebook_handler(event, context):
             elif message.get('message', {}).get('attachments', []):
                 # message w/ media
                 attachment = message['message']['attachments'][0]
-                msg = InputMessage(
+                msg = IncomingMessage(
                     type='media',  # your favorite type name
                     payload=MediaPayload(
                         type=attachment['type'],
@@ -37,7 +37,7 @@ def facebook_handler(event, context):
                 )
 
             else:
-                msg = InputMessage(
+                msg = IncomingMessage(
                     type=types.UNKNOWN,
                     payload=None
                 )

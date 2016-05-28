@@ -4,11 +4,15 @@ from bottoku import Repository
 
 
 class BlackholeRepository(Repository):
+    """Repository to store nothing"""
+
     def __init__(self):
         pass
 
     def get(self, repository_id):
+        """Always returns None"""
         pass
 
     def set(self, repository_id, **kwargs):
+        """Do nothing"""
         pass

@@ -4,6 +4,7 @@ from bottoku import Renderer
 
 
 class FunctionRenderer(Renderer):
+    """"""
 
     api = 'function'
 

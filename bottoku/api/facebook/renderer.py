@@ -12,7 +12,6 @@ class FacebookRenderer(Renderer):
 
     def __init__(self, env, token):
         super(FacebookRenderer, self).__init__(env)
-        self.env = env
         self.token = token
 
     def render(self, messages, receiver_id):

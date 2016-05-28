@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from bottoku import Bot, InputMessage, Environment
+from bottoku import Bot, IncomingMessage, Environment
 from bottoku.repository.blackhole_repository import BlackholeRepository
 from bottoku.renderer.stdout import StdoutRenderer
 
@@ -23,7 +23,7 @@ class MyBot(Bot):
 
 
 def shell_handler(text):
-    msg = InputMessage(
+    msg = IncomingMessage(
         type=types.TEXT,
         payload=text,
     )

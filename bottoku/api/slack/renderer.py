@@ -10,7 +10,7 @@ class SlackRenderer(Renderer):
     api = 'slack'
 
     def __init__(self, env, url):
-        self.env = env
+        super(SlackRenderer, self).__init__(env)
         self.url = url
 
     def render(self, messages, receiver_id):

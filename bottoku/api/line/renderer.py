@@ -13,7 +13,6 @@ class LineRenderer(Renderer):
 
     def __init__(self, env, channel_id, channel_secret, channel_mid):
         super(LineRenderer, self).__init__(env)
-        self.env = env
         self.channel_id = channel_id
         self.channel_secret = channel_secret
         self.channel_mid = channel_mid

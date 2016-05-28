@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from bottoku import InputMessage, Environment
+from bottoku import IncomingMessage, Environment
 from bottoku.repository.dict_repository import DictRepository
 
 from bot import MyBot
@@ -14,7 +14,7 @@ cache = DictRepository()  # Do not use with AWS Lambda
 def slack_handler(event, context):
     env = Environment(api='slack')
 
-    msg = InputMessage(
+    msg = IncomingMessage(
         type=types.TEXT,
         payload=TextPayload(event['text']),
     )

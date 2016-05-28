@@ -4,6 +4,8 @@ from bottoku import Repository, Record
 
 
 class DictRepository(Repository):
+    """Repository to store on memory via Python's ``dict``"""
+
     def __init__(self):
         import collections
         self.cache = collections.defaultdict(DictRecord)
@@ -13,9 +15,6 @@ class DictRepository(Repository):
 
 
 class DictRecord(dict, Record):
-    def __init__(self):
-        pass
-
     def set(self, **kwargs):
         for key, value in kwargs.items():
             self[key] = value
