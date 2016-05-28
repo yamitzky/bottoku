@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from bottoku import Bot, InputMessage, Environment, types
+from bottoku import Bot, InputMessage, Environment
 from bottoku.repository.blackhole_repository import BlackholeRepository
 from bottoku.renderer.stdout import StdoutRenderer
 
 import actions
+import types
 
 
 class MyBot(Bot):

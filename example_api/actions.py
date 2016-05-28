@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from bottoku import route, types
+from bottoku import route
 
+import types
 import views
 
 

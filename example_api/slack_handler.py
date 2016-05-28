@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from bottoku import InputMessage, Environment, types
+from bottoku import InputMessage, Environment
 from bottoku.repository.dict_repository import DictRepository
 
 from bot import MyBot
 from input_payload import TextPayload
+import types
 
 
 cache = DictRepository()  # Do not use with AWS Lambda

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import requests
-
-from bottoku.renderer.renderer import Renderer
 from bottoku.constants import line
-from bottoku.output.line import MultipleMessagesRequest
+
+from bottoku.api.line.template import MultipleMessagesRequest
+from bottoku.renderer.renderer import Renderer
 
 
 class LineRenderer(Renderer):
