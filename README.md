@@ -1,4 +1,4 @@
-# bottoku - Chat Bot Framework for Python
+# bottoku - Python Chat Bot Microframework
 
 bottoku(pronounce like 'bot-oku') is a chat bot *micro* framework for python.
 
