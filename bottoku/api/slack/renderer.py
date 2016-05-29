@@ -3,7 +3,7 @@ import logging
 
 import requests
 
-from bottoku.renderer.renderer import Renderer
+from bottoku import Renderer
 
 
 class SlackWebhookRenderer(Renderer):

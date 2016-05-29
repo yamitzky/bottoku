@@ -5,7 +5,6 @@ from bottoku.repository.blackhole_repository import BlackholeRepository
 from bottoku.renderer.stdout import StdoutRenderer
 
 import actions
-import types
 
 
 class MyBot(Bot):
@@ -18,13 +17,13 @@ class MyBot(Bot):
                 actions.echo,
             ],
             BlackholeRepository(),
-            StdoutRenderer(env)
+            StdoutRenderer()
         )
 
 
 def shell_handler(text):
     msg = IncomingMessage(
-        type=types.TEXT,
+        type='TEXT',
         payload=text,
     )
 
@@ -37,4 +36,7 @@ def shell_handler(text):
 
 if __name__ == '__main__':
     import sys
-    shell_handler(sys.argv[1].decode('utf-8'))
+    if len(sys.argv) >= 2:
+        shell_handler(sys.argv[1].decode('utf-8'))
+    else:
+        print('Usage: python example/handler.py "Your message"')

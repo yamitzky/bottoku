@@ -25,8 +25,8 @@ class Bot(object):
 
     :param bottoku.Environment env:
     :param list[function] routes:
-    :param bottoku.Repository receiver_repository:
-    :param bottoku.Renderer | list[bottoku.Renderer] renderers: list of renderers, or renderer to use.
+    :param bottoku.repository.Repository receiver_repository:
+    :param bottoku.renderer.Renderer | list[bottoku.renderer.Renderer] renderers: list of renderers, or renderer to use.
     """
 
     def __init__(self, env, routes, receiver_repository, renderers):

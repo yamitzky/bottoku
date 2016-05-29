@@ -3,7 +3,7 @@ import logging
 
 import requests
 
-from bottoku.renderer.renderer import Renderer
+from bottoku import Renderer
 from bottoku.api.facebook.template import MessageRequest
 
 

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from bottoku import route
-
 import re
 
 
