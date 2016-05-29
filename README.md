@@ -4,31 +4,31 @@ bottoku(pronounce like 'bot-oku') is a chat bot *micro* framework for python.
 
 ## Feature
 
-bottoku is microframework so it does not provides many featues.
-
-However, you can build chat bots with no limit.
+bottoku is a microframework, however, you can build chat bots with no limit.
 
 For example,
 
-- with server / AWS Lambda's serverless
-- respond to Line, Facebook, Twitter, Slack, etc...  with one business logic!
-- response with image, video, etc...
-- serial conversation: hi! -> how r u? -> great! -> btw, how about...
-- your favorite database backend
+- Integrates with web framework such as flask, djang, etc...
+- Build with AWS Lambda's serverless architecture
+- Respond to Line, Facebook, Slack, etc... with one logic!
+- Response with image, video, etc...
+- Serial conversation: hi! -> how r u? -> great! -> btw, how about...
+- Favorite database backend
 
 ## Compared to Hubot
 
-- No server, but you can build on server by choosing flask, django, etc...
-- No server, you can also easily build for AWS Lambda
-- No default binary, integrate by `pip install` ing
-- Less default adapter, write your own adapters
-- Unlimited routing using lambda function
+- No built-in server, you can build with server / serverless.
+- No default binary, integrate by `pip install` ing and use as just a library
+- Complicated routing / reply using Python's lambda function
 
-## Design
+## How to use
 
-bottoku is a framework, but it also define a design guideline of building chat bots.
+First, `pip` it.
 
--ki
+```
+pip install bottoku
+```
 
+Then, well,,, I haven't prepare usage docs yet, see 'example_api'
 
-For a real example, see "example_api"
+```

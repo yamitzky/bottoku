@@ -11,6 +11,14 @@ from slack_renderer import FacebookToSlackRenderer
 
 class MyBot(Bot):
     def __init__(self, env, receiver_repository):
+        renderers = [StdoutRenderer()]
+        if 'BOTTOKU_TEST_FACEBOOK_TOKEN' in config:
+            token = config['BOTTOKU_TEST_FACEBOOK_TOKEN']
+            renderers.append(FacebookRenderer(token))
+        if 'BOTTOKU_TEST_SLACK_WEBHOOK_URL' in config:
+            url = config['BOTTOKU_TEST_SLACK_WEBHOOK_URL']
+            renderers.append(FacebookToSlackRenderer(url))
+
         super(MyBot, self).__init__(
             env,
             [
@@ -23,9 +31,5 @@ class MyBot(Bot):
                 actions.default_text,
             ],
             receiver_repository,
-            [
-                StdoutRenderer(),
-                FacebookRenderer(config['BOTTOKU_TEST_FACEBOOK_TOKEN']),
-                FacebookToSlackRenderer(config['BOTTOKU_TEST_SLACK_WEBHOOK_URL']),
-            ]
+            renderers
         )
