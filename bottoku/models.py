@@ -9,12 +9,12 @@ class IncomingMessage(object):
     In case of you want to analyze incoming messages further(ex: PoS tagging, analyzing via CNNs),
     make a super class and analyze in ``__init__`` function.
 
-    :param basestring type: message type (ex: text, image, emoji, ...)
     :param payload: incoming messages' contents, typically dict but not restricted.
+    :param basestring type: (optional) message type (ex: text, image, emoji, ...)
     """
-    def __init__(self, type, payload):
-        self.type = type
+    def __init__(self, payload, type=None):
         self.payload = payload
+        self.type = type
 
 
 class Environment(object):

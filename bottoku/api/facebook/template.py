@@ -2,6 +2,8 @@
 
 from collections import namedtuple
 
+from bottoku.api.facebook import constant
+
 
 class MessageRequest(namedtuple('MessageRequest', 'recipient message')):
     def __new__(cls, receiver_id, message):
@@ -16,7 +18,7 @@ TextMessage = namedtuple('TextMessage', 'text')
 class ImageMessage(namedtuple('ImageMessage', 'attachment')):
     def __new__(cls, url):
         self = super(ImageMessage, cls).__new__(cls, {
-            'type': 'image',
+            'type': constant.ATTACHMENT_TYPE_IMAGE,
             'payload': {
                 'url': url
             }
@@ -28,9 +30,9 @@ class ImageMessage(namedtuple('ImageMessage', 'attachment')):
 class ButtonMessage(namedtuple('ButtonMessage', 'attachment')):
     def __new__(cls, text, buttons):
         self = super(ButtonMessage, cls).__new__(cls, {
-            'type': 'template',
+            'type': constant.ATTACHMENT_TYPE_TEMPLATE,
             'payload': {
-                'template_type': 'button',
+                'template_type': constant.TEMPLATE_TYPE_BUTTON,
                 'text': text,
                 'buttons': buttons
             }
@@ -45,12 +47,22 @@ class Button(namedtuple('Button', 'type title url payload')):
         return super(Button, cls).__new__(cls, type, title, url, payload)
 
 
+class WebURLButton(Button):
+    def __new__(cls, title, url):
+        return super(Button, cls).__new__(cls, constant.BUTTON_TYPE_WEB_URL, title, url, None)
+
+
+class PostbackButton(Button):
+    def __new__(cls, title, payload):
+        return super(Button, cls).__new__(cls, constant.BUTTON_TYPE_POSTBACK, title, None, payload)
+
+
 class GenericMessage(namedtuple('GenericMessage', 'attachment')):
     def __new__(cls, elements):
         self = super(GenericMessage, cls).__new__(cls, {
             'type': 'template',
             'payload': {
-                'template_type': 'generic',
+                'template_type': constant.TEMPLATE_TYPE_GENERIC,
                 'elements': elements,
             }
         })

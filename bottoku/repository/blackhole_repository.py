@@ -12,7 +12,3 @@ class BlackholeRepository(Repository):
     def get(self, repository_id):
         """Always returns None"""
         pass
-
-    def set(self, repository_id, **kwargs):
-        """Do nothing"""
-        pass

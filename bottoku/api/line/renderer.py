@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import requests
-from bottoku.constants import line
+from bottoku.api.line import constant
 
 from bottoku.api.line.template import MultipleMessagesRequest
 from bottoku.renderer.renderer import Renderer
@@ -11,15 +11,15 @@ class LineRenderer(Renderer):
 
     api = 'line'
 
-    def __init__(self, env, channel_id, channel_secret, channel_mid):
-        super(LineRenderer, self).__init__(env)
+    def __init__(self, channel_id, channel_secret, channel_mid):
+        super(LineRenderer, self).__init__()
         self.channel_id = channel_id
         self.channel_secret = channel_secret
         self.channel_mid = channel_mid
 
     def render(self, messages, receiver_id):
         response = requests.post(
-            'https://{}/v1/events'.format(line.API_HOST_TRIAL),
+            'https://{}/v1/events'.format(constant.API_HOST_TRIAL),
             json=MultipleMessagesRequest(
                 [receiver_id], self.convert(messages)
             ),

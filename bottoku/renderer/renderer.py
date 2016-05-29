@@ -11,14 +11,14 @@ class Renderer(object):
     I AM REALLY LOOKING FORWARD TO YOUR AWESOME CONTRIBUTIONS, thanks!
 
     To implement concrete renderers, override ``api`` property and ``render`` function.
+
+    :param basestring api:
     """
 
     __metaclass__ = ABCMeta
 
     api = None  # name of API, e.g. 'facebook', 'slack', 'line'
-
-    def __init__(self, env):
-        self.env = env
+    """:type: basestring"""
 
     @classmethod
     def convert(cls, messages):

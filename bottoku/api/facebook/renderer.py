@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
+import logging
 
 import requests
 
 from bottoku.renderer.renderer import Renderer
-from bottoku.output.facebook import MessageRequest
+from bottoku.api.facebook.template import MessageRequest
 
 
 class FacebookRenderer(Renderer):
 
     api = 'facebook'
 
-    def __init__(self, env, token):
-        super(FacebookRenderer, self).__init__(env)
+    def __init__(self, token):
+        super(FacebookRenderer, self).__init__()
         self.token = token
 
     def render(self, messages, receiver_id):
@@ -24,4 +25,6 @@ class FacebookRenderer(Renderer):
             responses.append(response)
 
         for response in responses:
+            if not response.ok:
+                logging.warn('Failed status {}: {}'.format(response.status_code, response.text))
             response.raise_for_status()
