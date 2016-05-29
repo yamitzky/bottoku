@@ -5,7 +5,7 @@ from bottoku.repository.dict_repository import DictRepository
 
 from bot import MyBot
 from input_payload import TextPayload, MediaPayload
-import types
+import message_types
 
 
 cache = DictRepository()  # Do not use with AWS Lambda
@@ -21,7 +21,7 @@ def facebook_handler(event, context):
             if message.get('message', {}).get('text'):
                 # text message in facebook
                 msg = IncomingMessage(
-                    type=types.TEXT,
+                    type=message_types.TEXT,
                     payload=TextPayload(message['message']['text']),
                 )
 
@@ -38,10 +38,35 @@ def facebook_handler(event, context):
 
             else:
                 msg = IncomingMessage(
-                    type=types.UNKNOWN,
+                    type=message_types.UNKNOWN,
                     payload=None
                 )
 
             # WARNING: not good, use lambda's invokeFunction
             # to reply async and return response immediately
             MyBot(env, cache).reply(msg, receiver_id)
+
+
+if __name__ == '__main__':
+    import sys
+    from config import config
+    if len(sys.argv) >= 2:
+        facebook_handler({
+            'object': 'page',
+            'entry': [{
+                'id': '',
+                'time': 1457764198246,
+                'messaging': [{
+                    'sender': {'id': config['BOTTOKU_TEST_FACEBOOK_RECEIVER_ID']},
+                    'recipient': {'id': 'PAGE_ID'},
+                    'timestamp': 1457764197627,
+                    'message': {
+                        'mid': 'mid.1457764197618:41d102a3e1ae206a38',
+                        'seq': 73,
+                        'text': sys.argv[1]
+                    }
+                }]
+            }]
+        }, None)
+    else:
+        print('Usage: python example_api/facebook_handler.py "Your message"')

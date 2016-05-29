@@ -2,11 +2,11 @@
 
 from bottoku import route
 
-import types
+import message_types
 import views
 
 
-@route(lambda message, _: message.type == types.UNKNOWN)
+@route(lambda message, _: message.type == message_types.UNKNOWN)
 def unknown(render, message, context):
     render(views.sorry())
 

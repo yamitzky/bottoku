@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import os
-
 from bottoku import Bot
 from bottoku.renderer.stdout import StdoutRenderer
-from bottoku.renderer.facebook import FacebookRenderer
+from bottoku.api.facebook.renderer import FacebookRenderer
 
 import actions
-from slack_renderer import MySlackRenderer
+from config import config
+from slack_renderer import FacebookToSlackRenderer
 
 
 class MyBot(Bot):
@@ -25,8 +24,8 @@ class MyBot(Bot):
             ],
             receiver_repository,
             [
-                StdoutRenderer(env),
-                FacebookRenderer(env, os.environ['FACEBOOK_TOKEN']),
-                MySlackRenderer(env, os.environ['SLACK_URL']),
+                StdoutRenderer(),
+                FacebookRenderer(config['BOTTOKU_TEST_FACEBOOK_TOKEN']),
+                FacebookToSlackRenderer(config['BOTTOKU_TEST_SLACK_WEBHOOK_URL']),
             ]
         )

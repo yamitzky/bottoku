@@ -2,7 +2,7 @@
 
 # this example uses facebook template as common output format.
 # but you do not have to do it.
-from bottoku.output.facebook import TextMessage, ImageMessage
+from bottoku.api.facebook.template import TextMessage, ImageMessage
 
 
 def sorry():

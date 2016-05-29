@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from bottoku.renderer.slack import SlackRenderer
-from bottoku.output.facebook import TextMessage, ImageMessage
-from bottoku.output.slack import SlackMessage, Attachment
+from bottoku.api.slack.renderer import SlackWebhookRenderer
+from bottoku.api.slack.template import SlackMessage, Attachment
+from bottoku.api.facebook.template import TextMessage, ImageMessage
 
 
-class MySlackRenderer(SlackRenderer):
+class FacebookToSlackRenderer(SlackWebhookRenderer):
     def convert(self, messages):
         # convert facebook message format to slack format
         text = []

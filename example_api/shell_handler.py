@@ -5,7 +5,7 @@ from bottoku.repository.dict_repository import DictRepository
 
 from bot import MyBot
 from input_payload import TextPayload
-import types
+import message_types
 
 
 cache = DictRepository()
@@ -13,7 +13,7 @@ cache = DictRepository()
 
 def shell_handler(text):
     msg = IncomingMessage(
-        type=types.TEXT,
+        type=message_types.TEXT,
         payload=TextPayload(text),
     )
     env = Environment(api='stdout')
