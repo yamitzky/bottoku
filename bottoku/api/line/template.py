@@ -9,10 +9,11 @@ from bottoku.api.line import constant
 
 class MultipleMessagesRequest(collections.namedtuple('MultipleMessageRequest',
                                                      'to toChannel eventType content')):
-    def __new__(cls, to, messages):
+    def __new__(cls, to, messages, message_notified=0):
         self = super(MultipleMessagesRequest, cls).__new__(
             cls, to, constant.OUT_TO_CHANNEL, constant.OUT_EVENT_TYPE_MULTIPLE_MESSAGE, {
-                'messages': messages
+                'messages': messages,
+                'messageNotified': message_notified
             })
         self.messages = messages
         return self

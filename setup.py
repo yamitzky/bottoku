@@ -8,7 +8,7 @@ except:
 
 setup(
     name='bottoku',
-    version='0.1.5',
+    version='0.1.6',
     packages=['bottoku', 'bottoku.api.line', 'bottoku.api.slack', 'bottoku.api.facebook',
               'bottoku.renderer', 'bottoku.repository'],
     url='https://github.com/yamitzky/bottoku',

@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-import logging
 
-import requests
+from requests import Request
 
-from bottoku import Renderer
+from bottoku import NetworkRenderer
 
 
-class SlackWebhookRenderer(Renderer):
+class SlackWebhookRenderer(NetworkRenderer):
 
     api = 'slack_webhook'
 
@@ -15,15 +14,14 @@ class SlackWebhookRenderer(Renderer):
         self.webhook_url = webhook_url
         self.mention = mention
 
-    def render(self, messages, receiver_id):
-        responses = []
-        for message in self.convert(messages):
+    def json_bodies(self, messages, receiver_id):
+        bodies = []
+        for message in messages:
             if self.mention:
                 message = message.add_mention(receiver_id)
-            response = requests.post(self.webhook_url, json=message)
-            responses.append(response)
-            if not response.ok:
-                logging.warn('Failed status {}: {}'.format(response.status_code, response.text))
+            bodies.append(message)
+        return bodies
 
-        for response in responses:
-            response.raise_for_status()
+    def prepared_requests(self, jsons):
+        return [Request('POST', self.webhook_url, json=body).prepare()
+                for body in jsons]

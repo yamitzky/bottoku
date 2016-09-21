@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-import logging
 
-import requests
+from requests import Request
 
-from bottoku import Renderer
+from bottoku import NetworkRenderer
 from bottoku.api.facebook.template import MessageRequest
 
 
-class FacebookRenderer(Renderer):
+class FacebookRenderer(NetworkRenderer):
 
     api = 'facebook'
 
@@ -15,16 +14,12 @@ class FacebookRenderer(Renderer):
         super(FacebookRenderer, self).__init__()
         self.token = token
 
-    def render(self, messages, receiver_id):
-        responses = []
-        for message in self.convert(messages):
-            response = requests.post(
-                'https://graph.facebook.com/v2.6/me/messages',
-                params={'access_token': self.token},
-                json=MessageRequest(receiver_id, message))
-            responses.append(response)
+    def json_bodies(self, messages, receiver_id):
+        return [MessageRequest(receiver_id, message)
+                for message in messages]
 
-        for response in responses:
-            if not response.ok:
-                logging.warn('Failed status {}: {}'.format(response.status_code, response.text))
-            response.raise_for_status()
+    def prepared_requests(self, jsons):
+        return [Request('POST', 'https://graph.facebook.com/v2.6/me/messages',
+                        params={'access_token': self.token},
+                        json=body).prepare()
+                for body in jsons]

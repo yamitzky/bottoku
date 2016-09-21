@@ -5,9 +5,9 @@ from collections import namedtuple
 from bottoku.api.facebook import constant
 
 
-class MessageRequest(namedtuple('MessageRequest', 'recipient message')):
-    def __new__(cls, receiver_id, message):
-        self = super(MessageRequest, cls).__new__(cls, {'id': receiver_id}, message)
+class MessageRequest(namedtuple('MessageRequest', 'recipient message notification_type')):
+    def __new__(cls, receiver_id, message, notification_type=constant.NOTIFICATION_TYPE_REGULAR):
+        self = super(MessageRequest, cls).__new__(cls, {'id': receiver_id}, message, notification_type)
         self.receiver_id = receiver_id
         return self
 
